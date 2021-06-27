@@ -5,11 +5,12 @@ This repository is a docker-compose setup for nextcloud and calibre using traefi
 ## References
 
 ### Docker Images
-- [Traefik]()
-- [Docker-Socket-Proxy]()
-- [Nextcloud]()
-- [Calibre]()
-- [Calibre-Web]()
+- [Traefik](https://hub.docker.com/_/traefik)
+- [Docker-Socket-Proxy](https://hub.docker.com/r/tecnativa/docker-socket-proxy)
+- [MariaDB](https://hub.docker.com/_/mariadb)
+- [Nextcloud](https://hub.docker.com/_/nextcloud)
+- [Calibre](https://hub.docker.com/r/linuxserver/calibre)
+- [Calibre-Web](https://hub.docker.com/r/linuxserver/calibre-web)
 
 ### Documentation
 - [Traefik]()
