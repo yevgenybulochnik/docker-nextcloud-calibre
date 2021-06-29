@@ -1,6 +1,6 @@
 version: '3.9'
 services:
-  docker-proxy:
+  # docker-proxy:
   traefik:
     image: "traefik:v2.4"
     container_name: "traefik"
@@ -33,36 +33,46 @@ services:
     container_name: nextcloud-app
     depends_on:
       - db
-    ports:
-      - 8080:80
-    volumes:
-      - /mnt/ncstorage:/var/www/html
+    # volumes:
+    #   - /mnt/ncstorage:/var/www/html
     environment:
       MYSQL_HOST: db
       MYSQL_PASSWORD:
       MYSQL_DATABASE:
       MYSQL_USER:
+    labels:
+      traefik.enable: true
+      traefik.http.routers.nextcloud.rule: Host(`local.nextcloud`)
+      traefik.http.routers.nextcloud.entrypoints: web
 
   calibre:
     image: ghcr.io/linuxserver/calibre
     container_name: calibre
-    volumes:
-      - ./kindle:/kindle
-      - ./books:/config
-    ports:
-      - 8083:8080
+    # volumes:
+      # - ./kindle:/kindle
+      # - ./books:/config
     environment:
-      - puid=33
-      - guid=33
+      - PUID=33
+      - GUID=33
+    labels:
+      traefik.enable: true
+      traefik.http.routers.calibre.rule: Host(`local.calibre`)
+      traefik.http.routers.calibre.entrypoints: web
+      # Below is necessary because the base Dockerfile does not expose any ports
+      traefik.http.services.calibre.loadbalancer.server.port: 8080
 
   calibre-web:
     image: ghcr.io/linuxserver/calibre-web
     container_name: calibre-web
-    volumes:
-      - /mnt/ncstorage/data/yevgeny/files/books:/books
-    ports:
-      - 8084:8083
+    # volumes:
+    #   - /mnt/ncstorage/data/yevgeny/files/books:/books
+    # ports:
+    #   - 8084:8083
     environment:
       - PUID=33
       - GUID=33
-      - DOCKER_MODS=linuxserver/calibre-web:calibre
+      # - DOCKER_MODS=linuxserver/calibre-web:calibre
+    labels:
+      traefik.enable: true
+      traefik.http.routers.calibre-web.rule: Host(`local.calibre-web2`)
+      traefik.http.routers.calibre-web.entrypoints: web
