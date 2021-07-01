@@ -2,6 +2,8 @@
 
 This repository is a docker-compose setup for nextcloud and calibre using traefik as a proxy. It uses both calibre and calibre-web to manage books. The setup is completely local intended to be used with a VPN (wireguard).
 
+## Env Vars
+
 ## References
 
 ### Docker Images
