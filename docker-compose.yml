@@ -20,8 +20,8 @@ services:
     image: mariadb
     container_name: nextcloud-db
     command: --transaction-isolation=READ-COMMITTED --binlog-format=ROW
-    volumes:
-      - /var/lib/mysql:/var/lib/mysql
+    # volumes:
+    #   - /var/lib/mysql:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD:
       MYSQL_PASSWORD:
@@ -42,7 +42,7 @@ services:
       MYSQL_USER:
     labels:
       traefik.enable: true
-      traefik.http.routers.nextcloud.rule: Host(`local.nextcloud`)
+      traefik.http.routers.nextcloud.rule: "Host(`${NEXTCLOUD_URL}`)"
       traefik.http.routers.nextcloud.entrypoints: web
 
   calibre:
@@ -56,7 +56,7 @@ services:
       - GUID=33
     labels:
       traefik.enable: true
-      traefik.http.routers.calibre.rule: Host(`local.calibre`)
+      traefik.http.routers.calibre.rule: "Host(`${CALIBRE_URL}`)"
       traefik.http.routers.calibre.entrypoints: web
       # Below is necessary because the base Dockerfile does not expose any ports
       traefik.http.services.calibre.loadbalancer.server.port: 8080
@@ -74,5 +74,5 @@ services:
       # - DOCKER_MODS=linuxserver/calibre-web:calibre
     labels:
       traefik.enable: true
-      traefik.http.routers.calibre-web.rule: Host(`local.calibre-web2`)
+      traefik.http.routers.calibre-web.rule: "Host(`${CALIBRE_WEB_URL}`)"
       traefik.http.routers.calibre-web.entrypoints: web
