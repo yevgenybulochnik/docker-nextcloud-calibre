@@ -66,12 +66,10 @@ services:
     container_name: calibre-web
     # volumes:
     #   - /mnt/ncstorage/data/yevgeny/files/books:/books
-    # ports:
-    #   - 8084:8083
     environment:
       - PUID=33
       - GUID=33
-      # - DOCKER_MODS=linuxserver/calibre-web:calibre
+      - DOCKER_MODS=linuxserver/calibre-web:calibre
     labels:
       traefik.enable: true
       traefik.http.routers.calibre-web.rule: "Host(`${CALIBRE_WEB_URL}`)"
