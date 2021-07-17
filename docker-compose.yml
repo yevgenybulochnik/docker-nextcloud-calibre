@@ -34,7 +34,7 @@ services:
     depends_on:
       - db
     volumes:
-      - "${NEXTLCOUD_STORAGE_PATH:-/var/www/html}:/var/www/html"
+      - "${NEXTCLOUD_STORAGE_PATH:-/var/www/html}:/var/www/html"
     environment:
       MYSQL_HOST: db
       MYSQL_PASSWORD:
