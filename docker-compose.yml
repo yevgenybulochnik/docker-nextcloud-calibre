@@ -17,7 +17,7 @@ services:
       - "/var/run/docker.sock:/var/run/docker.sock:ro"
 
   db:
-    image: mariadb
+    image: mariadb:10.5
     container_name: nextcloud-db
     command: --transaction-isolation=READ-COMMITTED --binlog-format=ROW
     volumes:
@@ -29,7 +29,7 @@ services:
       MYSQL_USER:
 
   nextcloud:
-    image: nextcloud
+    image: nextcloud:22.0.0
     container_name: nextcloud-app
     depends_on:
       - db
