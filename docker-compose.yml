@@ -65,6 +65,7 @@ services:
     image: ghcr.io/linuxserver/calibre-web
     container_name: calibre-web
     volumes:
+      - "{CALIBRE_WEB_CONFIG:-./calibre-web-config}:/config"
       - "${CALIBRE_WEB_LIBRARY}:/books"
     environment:
       - PUID=33
