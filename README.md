@@ -5,14 +5,21 @@ This repository is a docker-compose setup for nextcloud and calibre using traefi
 ## Env Vars
 
 ```
-MYSQL_ROOT_PASSWORD = nextcloudpass
-MYSQL_PASSWORD      = nextcloudpass
-MYSQL_DATABASE      = nextcloud
-MYSQL_USER          = nextcloud
+MYSQL_ROOT_PASSWORD    = nextcloudpass
+MYSQL_PASSWORD         = nextcloudpass
+MYSQL_DATABASE         = nextcloud
+MYSQL_USER             = nextcloud
+MYSQL_DATA             = /var/lib/mysql
 
-NEXTCLOUD_URL       = local.nextcloud
-CALIBRE_URL         = local.calibre
-CALIBRE_WEB_URL     = local.calibre-web
+NEXTCLOUD_URL          = local.nextcloud
+NEXTCLOUD_STORAGE_PATH = /var/www/html
+
+CALIBRE_URL            = local.calibre
+CALIBRE_LIBRARY
+
+CALIBRE_WEB_URL        = local.calibre-web
+CALIBRE_WEB_CONFIG     = ./calibre-web-config
+CALIBRE_WEB_LIBRARY
 ```
 
 ## References
