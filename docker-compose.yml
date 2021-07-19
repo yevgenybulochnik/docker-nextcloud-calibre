@@ -45,21 +45,21 @@ services:
       traefik.http.routers.nextcloud.rule: "Host(`${NEXTCLOUD_URL}`)"
       traefik.http.routers.nextcloud.entrypoints: web
 
-  calibre:
-    image: ghcr.io/linuxserver/calibre
-    container_name: calibre
-    volumes:
-      - ./unloaded_books:/unloaded_books
-      - "${CALIBRE_LIBRARY}:/config"
-    environment:
-      - PUID=33
-      - GUID=33
-    labels:
-      traefik.enable: true
-      traefik.http.routers.calibre.rule: "Host(`${CALIBRE_URL}`)"
-      traefik.http.routers.calibre.entrypoints: web
-      # Below is necessary because the base Dockerfile does not expose any ports
-      traefik.http.services.calibre.loadbalancer.server.port: 8080
+  # calibre:
+  #   image: ghcr.io/linuxserver/calibre
+  #   container_name: calibre
+  #   volumes:
+  #     - ./unloaded_books:/unloaded_books
+  #     - "${CALIBRE_LIBRARY}:/config"
+  #   environment:
+  #     - PUID=33
+  #     - GUID=33
+  #   labels:
+  #     traefik.enable: true
+  #     traefik.http.routers.calibre.rule: "Host(`${CALIBRE_URL}`)"
+  #     traefik.http.routers.calibre.entrypoints: web
+  #     # Below is necessary because the base Dockerfile does not expose any ports
+  #     traefik.http.services.calibre.loadbalancer.server.port: 8080
 
   calibre-web:
     image: ghcr.io/linuxserver/calibre-web
